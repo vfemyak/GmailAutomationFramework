@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="GmailTest" verbose="10" group-by-instances="true" thread-count="3"  data-provider-thread-count="3" parallel="classes">
+    <test name="EmailSendingTest" >
+        <classes>
+            <class name="SendDraftLetterTest"/>
+        </classes>
+    </test>
+</suite>
