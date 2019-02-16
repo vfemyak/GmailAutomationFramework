@@ -14,39 +14,42 @@ public class SendMessageBO {
     private GmailHomePage gmailHomePage;
     private static Logger logger = LogManager.getLogger(SendMessageBO.class);
 
+    private WebDriver driver;
+
     public SendMessageBO (WebDriver driver){
         gmailHomePage = new GmailHomePage(driver);
+        this.driver = driver;
     }
 
-    public void sendMessage (WebDriver driver, String to, String subject, String message){
-        writeLetter(driver,to,subject,message);
+    public void sendMessage (String to, String subject, String message){
+        writeLetter(to,subject,message);
         gmailHomePage.sendMessage();
         logger.info("Message has been sent");
     }
 
-    public void writeMessageAndClose (WebDriver driver, String to, String subject, String message){
-        writeLetter(driver,to,subject,message);
+    public void writeMessageAndClose (String to, String subject, String message){
+        writeLetter(to,subject,message);
         gmailHomePage.saveMessage();
-        (new WebDriverWait(driver,10))      //waiting for closing letter form
+        new WebDriverWait(driver,10)      //waiting for closing letter form
                 .until(ExpectedConditions.invisibilityOfElementLocated
                         (By.xpath("//td[@class=\'Hm\']/img[@class=\'Ha\']")));
         logger.info("Message has been closed");
     }
 
-    public void writeLetter (WebDriver driver, String to, String subject, String message){
+    public void writeLetter (String to, String subject, String message){
         gmailHomePage.clickCompose();
-        (new WebDriverWait(driver,10))      //waiting for opening letter form
+        new WebDriverWait(driver,10)      //waiting for opening letter form
                 .until(ExpectedConditions.visibilityOfElementLocated
                         (By.xpath("//td[@class=\'Hm\']/img[@class=\'Ha\']")));
         gmailHomePage.writeLetter(to,subject,message);
         logger.info("Message has been written");
     }
 
-    public void checkAndSendDraftMessage(WebDriver driver, String to, String subject, String message){
+    public void checkAndSendDraftMessage(String to, String subject, String message){
         gmailHomePage.openDraftFolder();
         logger.info("Draft folder has been opened");
         gmailHomePage.openDraftMessage();
-        (new WebDriverWait(driver,10))      //waiting for opening letter form
+        new WebDriverWait(driver,10)      //waiting for opening letter form
                 .until(ExpectedConditions.visibilityOfElementLocated
                         (By.xpath("//table[@class=\'IZ\']/descendant::*[@role=\'button\']")));
         gmailHomePage.checkMessageFields(to, subject, message);

@@ -29,16 +29,16 @@ public class SendDraftLetterTest {
     }
 
     @Test
-    public void gmailLoginTest() throws InterruptedException {
+    public void gmailLoginTest() {
 
         AuthorisationBO authorisationBO = new AuthorisationBO(driver);
-        authorisationBO.LogIn(driver, login,password);
+        authorisationBO.LogIn(login,password);
 
         SendMessageBO sendMessageBO = new SendMessageBO(driver);
-        sendMessageBO.writeMessageAndClose(driver,to,subject,message);
-        sendMessageBO.checkAndSendDraftMessage(driver,to,subject,message);
+        sendMessageBO.writeMessageAndClose(to,subject,message);
+        sendMessageBO.checkAndSendDraftMessage(to,subject,message);
 
-        //Thread.sleep(4000);         //using this to see result
+        //TODO додати асерт на перевірку чи повідомлення надіслано
 
     }
 
