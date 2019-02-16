@@ -2,12 +2,15 @@ package POM;
 
 import elements.Button;
 import elements.TextArea;
+import models.Letter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import wrappers.CustomFieldDecorator;
 
 public class GmailHomePage {
+
+    private Letter letter = new Letter();
 
     @FindBy(xpath = "//div[@class=\'z0\']/descendant::div[@role=\'button\']")
     private Button composeButton;
@@ -44,10 +47,10 @@ public class GmailHomePage {
         composeButton.click();
     }
 
-    public void writeLetter(String to, String subject, String message){
-        toTextarea.sendKeys(20, to);
-        subjectTextarea.sendKeys(subject);
-        messageTextarea.sendKeys(message);
+    public void writeLetter(Letter letter){
+        toTextarea.sendKeys(20, letter.getTo());
+        subjectTextarea.sendKeys(letter.getSubject());
+        messageTextarea.sendKeys(letter.getMessage());
     }
 
     public void saveMessage(){
@@ -70,10 +73,16 @@ public class GmailHomePage {
         sendButton.click();
     }
 
-    public void checkMessageFields(String to, String subject, String message){
+    public Letter getLetter(){
+        letter.setTo(toTextareaCompare.getEmail());
+        letter.setSubject(subjectTextarea.getValue());
+        letter.setMessage(messageTextarea.getText());
+
+        return letter;
+    }
+
         //TODO: перемістити асерти в тест
 //        Assert.assertEquals(to,toTextareaCompare.getEmail());
 //        Assert.assertEquals(subject,subjectTextarea.getValue());
 //        Assert.assertEquals(message, messageTextarea.getText());
-    }
 }

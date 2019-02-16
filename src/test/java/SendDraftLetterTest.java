@@ -1,7 +1,9 @@
 import BO.AuthorisationBO;
 import BO.SendMessageBO;
+import models.Letter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -31,12 +33,16 @@ public class SendDraftLetterTest {
     @Test
     public void gmailLoginTest() {
 
+        Letter letter = new Letter("vfemyak@gmail.com", "tessst task3", "Testtting");
+
         AuthorisationBO authorisationBO = new AuthorisationBO(driver);
         authorisationBO.LogIn(login,password);
 
-        SendMessageBO sendMessageBO = new SendMessageBO(driver);
-        sendMessageBO.writeMessageAndClose(to,subject,message);
-        sendMessageBO.checkAndSendDraftMessage(to,subject,message);
+        SendMessageBO sendMessageBO = new SendMessageBO(driver,letter);
+        sendMessageBO.writeMessageAndClose();
+        sendMessageBO.openDraftMessage();
+        Assert.assertTrue(sendMessageBO.isValidateFields(letter));
+        sendMessageBO.sendDraftLetter();
 
         //TODO додати асерт на перевірку чи повідомлення надіслано
 

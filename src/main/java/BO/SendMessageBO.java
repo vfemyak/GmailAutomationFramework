@@ -2,6 +2,7 @@ package BO;
 
 import POM.GmailHomePage;
 
+import models.Letter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -15,20 +16,22 @@ public class SendMessageBO {
     private static Logger logger = LogManager.getLogger(SendMessageBO.class);
 
     private WebDriver driver;
+    private Letter letter;
 
-    public SendMessageBO (WebDriver driver){
+    public SendMessageBO (WebDriver driver, Letter letter){
         gmailHomePage = new GmailHomePage(driver);
         this.driver = driver;
+        this.letter = letter;
     }
 
-    public void sendMessage (String to, String subject, String message){
-        writeLetter(to,subject,message);
+    public void sendMessage (){
+        writeLetter(letter);
         gmailHomePage.sendMessage();
         logger.info("Message has been sent");
     }
 
-    public void writeMessageAndClose (String to, String subject, String message){
-        writeLetter(to,subject,message);
+    public void writeMessageAndClose (){
+        writeLetter(letter);
         gmailHomePage.saveMessage();
         new WebDriverWait(driver,10)      //waiting for closing letter form
                 .until(ExpectedConditions.invisibilityOfElementLocated
@@ -36,24 +39,36 @@ public class SendMessageBO {
         logger.info("Message has been closed");
     }
 
-    public void writeLetter (String to, String subject, String message){
+    public void writeLetter (Letter letter){
         gmailHomePage.clickCompose();
         new WebDriverWait(driver,10)      //waiting for opening letter form
                 .until(ExpectedConditions.visibilityOfElementLocated
                         (By.xpath("//td[@class=\'Hm\']/img[@class=\'Ha\']")));
-        gmailHomePage.writeLetter(to,subject,message);
+        gmailHomePage.writeLetter(letter);
         logger.info("Message has been written");
     }
 
-    public void checkAndSendDraftMessage(String to, String subject, String message){
+    public void openDraftMessage(){
         gmailHomePage.openDraftFolder();
         logger.info("Draft folder has been opened");
         gmailHomePage.openDraftMessage();
         new WebDriverWait(driver,10)      //waiting for opening letter form
                 .until(ExpectedConditions.visibilityOfElementLocated
                         (By.xpath("//table[@class=\'IZ\']/descendant::*[@role=\'button\']")));
-        gmailHomePage.checkMessageFields(to, subject, message);
-        logger.info("Message has been checked");
+    }
+
+    public boolean isValidateFields(Letter letter){
+        if(gmailHomePage.getLetter().checkFields(letter)) {
+            logger.info("All fields are valid");
+            return true;
+        }
+        else{
+            logger.error("Test failed");
+            return false;
+        }
+    }
+
+    public void sendDraftLetter(){
         gmailHomePage.sendMessage();
         logger.info("Message has been sent");
     }
