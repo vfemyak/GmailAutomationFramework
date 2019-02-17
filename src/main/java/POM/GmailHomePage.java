@@ -43,6 +43,9 @@ public class GmailHomePage {
     @FindBy(xpath = "//*[@id=\'link_vsm\']")
     private WebElement isSentLabel;
 
+    @FindBy(css = "tr.btC")
+    private WebElement divBlock;
+
     public GmailHomePage(WebDriver driver){
         PageFactory.initElements(new CustomFieldDecorator(driver),this);
     }
@@ -66,6 +69,7 @@ public class GmailHomePage {
     }
 
     public void openDraftMessage(){
+        //todo забрати sleep
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -87,5 +91,17 @@ public class GmailHomePage {
 
     public WebElement getIsSentLabel(){
         return isSentLabel;
+    }
+
+    public Button getSaveAndCloseButton() {
+        return saveAndCloseButton;
+    }
+
+    public TextArea getMessageTextarea() {
+        return messageTextarea;
+    }
+
+    public Button getSendButton() {
+        return sendButton;
     }
 }

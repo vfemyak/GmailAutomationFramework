@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import wrappers.Element;
 
-public class Button extends Element {
+public class Button extends Element implements WebElement {
 
     public Button(WebElement webElement) {
         super(webElement);
@@ -18,26 +18,19 @@ public class Button extends Element {
         System.out.println("You cannot write smth to button");
     }
 
-    public boolean isClicable(WebDriver driver){
-        boolean isClickable = true;
+    public boolean isClickable(WebDriver driver){
         try {
             (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (Exception ex) {
-            isClickable = false;
+            return false;
         }
-        return isClickable;
+        return true;
     }
 
     public void safeClick(WebDriver driver) throws ElementNotInteractableException{
-        if (isClicable(driver)) {
+        if (isClickable(driver)) {
             super.click();
         }
         else System.out.println("This element is not interactable");
-    }
-
-    public boolean isVisible(){
-        if (this.isSelected())
-            return true;
-        else return false;
     }
 }

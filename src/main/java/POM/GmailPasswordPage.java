@@ -23,4 +23,10 @@ public class GmailPasswordPage {
         passwordInput.sendKeys(password);
         nextButton.click();
     }
+
+    public TextInput getPasswordInput() {
+        return passwordInput;
+    }
 }
+
+//todo не передавати driver в конструктор

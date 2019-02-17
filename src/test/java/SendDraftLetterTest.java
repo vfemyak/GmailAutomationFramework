@@ -2,18 +2,17 @@ import BO.AuthorisationBO;
 import BO.SendMessageBO;
 import models.Letter;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.util.concurrent.TimeUnit;
 
 public class SendDraftLetterTest {
 
     @DataProvider(name = "Authentication",parallel = true)
     public static Object[][] credentials(){
         return new Object[][]{
-                {"vfemyaktest","test1234test"}
+                {"vfemyaktest","test1234test"},
+                {"vfemyaktest1","test1234test1"},
+                {"vfemyaktest2","test1234test2"}
         };
     }
 

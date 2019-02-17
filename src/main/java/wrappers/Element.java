@@ -10,6 +10,10 @@ public class Element implements IElement {
             this.webElement = webElement;
         }
 
+        public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
+            return null;
+        }
+
         public void clear() {
             webElement.clear();
         }
