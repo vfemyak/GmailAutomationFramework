@@ -4,6 +4,7 @@ import elements.Button;
 import elements.TextArea;
 import models.Letter;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import wrappers.CustomFieldDecorator;
@@ -38,6 +39,9 @@ public class GmailHomePage {
 
     @FindBy(xpath = "//table[@class=\'IZ\']/descendant::*[@role=\'button\']")
     private Button sendButton;
+
+    @FindBy(xpath = "//*[@id=\'link_vsm\']")
+    private WebElement isSentLabel;
 
     public GmailHomePage(WebDriver driver){
         PageFactory.initElements(new CustomFieldDecorator(driver),this);
@@ -81,8 +85,7 @@ public class GmailHomePage {
         return letter;
     }
 
-        //TODO: перемістити асерти в тест
-//        Assert.assertEquals(to,toTextareaCompare.getEmail());
-//        Assert.assertEquals(subject,subjectTextarea.getValue());
-//        Assert.assertEquals(message, messageTextarea.getText());
+    public WebElement getIsSentLabel(){
+        return isSentLabel;
+    }
 }

@@ -4,34 +4,29 @@ import models.Letter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class SendDraftLetterTest {
 
-    private static WebDriver driver;
-
-    private final String login = "vfemyaktest";
-    private final String password = "test1234test";
-    private final String to = "vfemyak@gmail.com";
-    private final String subject = "tessst task3";
-    private final String message = "Testtting";
-
+    @DataProvider(name = "Authentication",parallel = true)
+    public static Object[][] credentials(){
+        return new Object[][]{
+                {"vfemyaktest","test1234test"}
+        };
+    }
 
     @BeforeClass
     public static void init(){
         System.setProperty("webdriver.chrome.driver","src\\main\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-        driver.get("https://www.google.com/gmail/");
     }
 
-    @Test
-    public void gmailLoginTest() {
+    @Test(dataProvider = "Authentication")
+    public void gmailLoginTest(String login, String password) {
+
+        WebDriver driver = DriverManager.getInstance().getDriver();
+        driver.get("https://www.google.com/gmail/");
 
         Letter letter = new Letter("vfemyak@gmail.com", "tessst task3", "Testtting");
 
@@ -41,15 +36,11 @@ public class SendDraftLetterTest {
         SendMessageBO sendMessageBO = new SendMessageBO(driver,letter);
         sendMessageBO.writeMessageAndClose();
         sendMessageBO.openDraftMessage();
-        Assert.assertTrue(sendMessageBO.isValidateFields(letter));
+        Assert.assertTrue(sendMessageBO.isValidateFields(letter));  //validating fields
         sendMessageBO.sendDraftLetter();
+        Assert.assertTrue(sendMessageBO.isSent());  //checking if the message was sent
 
-        //TODO додати асерт на перевірку чи повідомлення надіслано
-
-    }
-
-    @AfterClass
-    public static void tearDown(){
         driver.quit();
     }
+
 }

@@ -68,6 +68,18 @@ public class SendMessageBO {
         }
     }
 
+    public boolean isSent(){
+        try {
+            new WebDriverWait(driver,10)
+                    .until(ExpectedConditions.visibilityOf(gmailHomePage.getIsSentLabel()));
+        }
+        catch (Exception ex){
+            logger.error("Test failed");
+            return false;
+        }
+        return true;
+    }
+
     public void sendDraftLetter(){
         gmailHomePage.sendMessage();
         logger.info("Message has been sent");
