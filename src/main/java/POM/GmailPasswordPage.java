@@ -28,5 +28,3 @@ public class GmailPasswordPage {
         return passwordInput;
     }
 }
-
-//todo не передавати driver в конструктор

@@ -2,6 +2,7 @@ package POM;
 
 import elements.Button;
 import elements.TextArea;
+import elements.TextInput;
 import models.Letter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import wrappers.CustomFieldDecorator;
 public class GmailHomePage {
 
     private Letter letter = new Letter();
+    private WebDriver driver;
 
     @FindBy(xpath = "//div[@class=\'z0\']/descendant::div[@role=\'button\']")
     private Button composeButton;
@@ -46,8 +48,15 @@ public class GmailHomePage {
     @FindBy(css = "tr.btC")
     private WebElement divBlock;
 
+    @FindBy(xpath = "//*[@id=\"aso_search_form_anchor\"]/div/input")
+    private TextInput searchInput;
+
+    @FindBy(css = "#aso_search_form_anchor > button.gb_Ef.gb_Qf > svg")
+    private Button searchButton;
+
     public GmailHomePage(WebDriver driver){
         PageFactory.initElements(new CustomFieldDecorator(driver),this);
+        this.driver = driver;
     }
 
     public void clickCompose(){
@@ -69,7 +78,6 @@ public class GmailHomePage {
     }
 
     public void openDraftMessage(){
-        //todo забрати sleep
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -104,4 +112,6 @@ public class GmailHomePage {
     public Button getSendButton() {
         return sendButton;
     }
+
+
 }
