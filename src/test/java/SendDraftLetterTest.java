@@ -1,19 +1,29 @@
 import BO.AuthorisationBO;
 import BO.SendMessageBO;
+import data_readers.CsvDataReader;
+import data_readers.DataSourceReaderStrategy;
 import models.Letter;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SendDraftLetterTest {
 
     @DataProvider(name = "Authentication",parallel = true)
-    public static Object[][] credentials(){
-        return new Object[][]{
-                {"vfemyaktest","test1234test"},
-                {"vfemyaktest1","test1234test1"},
-                {"vfemyaktest2","test1234test2"}
-        };
+    public static Object[][] credentials() throws IOException, InvalidFormatException {
+
+        //choose strategy
+        DataSourceReaderStrategy dataReader = new DataSourceReaderStrategy(new CsvDataReader());
+
+        List<String[]> arrayList = new ArrayList<>();
+        arrayList = dataReader.findAll();
+
+        return arrayList.toArray(new Object[0][]);
     }
 
     @BeforeClass
