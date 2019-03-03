@@ -1,5 +1,7 @@
 import BO.AuthorisationBO;
 import BO.SendMessageBO;
+import utils.CustomListener;
+import utils.DriverManager;
 import data_readers.CsvDataReader;
 import data_readers.DataSourceReaderStrategy;
 import models.Letter;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Listeners({CustomListener.class})
 public class SendDraftLetterTest {
 
     @DataProvider(name = "Authentication",parallel = true)

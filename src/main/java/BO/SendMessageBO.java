@@ -2,6 +2,7 @@ package BO;
 
 import POM.GmailHomePage;
 
+import io.qameta.allure.Step;
 import models.Letter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +27,7 @@ public class SendMessageBO {
         this.wait = new WebDriverWait(driver,10);
     }
 
+    @Step("Message has been closed")
     public void writeMessageAndClose (){
         writeLetter(letter);
         gmailHomePage.saveMessage();
@@ -33,6 +35,7 @@ public class SendMessageBO {
         logger.info("Message has been closed");
     }
 
+    @Step("Message has been written")
     public void writeLetter (Letter letter){
         gmailHomePage.clickCompose();
         wait.until(ExpectedConditions.visibilityOf(gmailHomePage.getSaveAndCloseButton()));  //waiting for opening letter form
@@ -40,6 +43,7 @@ public class SendMessageBO {
         logger.info("Message has been written");
     }
 
+    @Step("Draft folder has been opened")
     public void openDraftMessage(){
         gmailHomePage.openDraftFolder();
         logger.info("Draft folder has been opened");
@@ -69,6 +73,7 @@ public class SendMessageBO {
         return true;
     }
 
+    @Step("Message has been sent")
     public void sendDraftLetter(){
         gmailHomePage.sendMessage();
         logger.info("Message has been sent");

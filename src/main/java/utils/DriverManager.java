@@ -1,3 +1,5 @@
+package utils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +21,7 @@ public class DriverManager {
 
     private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<WebDriver>();
 
-    public WebDriver getDriver() {
+    public static WebDriver getDriver() {
         if (driverPool.get() == null) {
             logger.info("Driver initialize successful");
             driverPool.set(initWebDriver());
