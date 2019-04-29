@@ -1,6 +1,6 @@
 package elements;
 
-import BO.AuthorisationBO;
+import Services.AuthorisationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -8,7 +8,7 @@ import wrappers.Element;
 
 public class TextArea extends Element implements WebElement {
 
-    private static Logger logger = LogManager.getLogger(AuthorisationBO.class);
+    private static Logger logger = LogManager.getLogger(AuthorisationService.class);
 
     public TextArea(WebElement webElement) {
         super(webElement);

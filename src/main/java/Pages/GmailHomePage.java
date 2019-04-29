@@ -1,4 +1,4 @@
-package POM;
+package Pages;
 
 import elements.Button;
 import elements.TextArea;
@@ -44,9 +44,6 @@ public class GmailHomePage {
 
     @FindBy(xpath = "//*[@id=\'link_vsm\']")
     private WebElement isSentLabel;
-
-    @FindBy(css = "tr.btC")
-    private WebElement divBlock;
 
     @FindBy(xpath = "//*[@id=\"aso_search_form_anchor\"]/div/input")
     private TextInput searchInput;

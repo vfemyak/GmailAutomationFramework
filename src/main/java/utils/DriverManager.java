@@ -9,14 +9,10 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
     public static final Logger logger = LogManager.getLogger(DriverManager.class);
+    private static final String WEB_DRIVER = "webdriver.chrome.driver";
+    private static final String WEB_DRIVER_PATH = "src\\main\\resources\\chromedriver.exe";
 
     private DriverManager() {
-    }
-
-    private static DriverManager instance = new DriverManager();
-
-    public static DriverManager getInstance() {
-        return instance;
     }
 
     private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<WebDriver>();
@@ -30,6 +26,8 @@ public class DriverManager {
     }
 
     static WebDriver initWebDriver() {
+        System.setProperty(WEB_DRIVER, WEB_DRIVER_PATH);
+
         WebDriver webDriver = new ChromeDriver();
 
         webDriver.manage().window().maximize();

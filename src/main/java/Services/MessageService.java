@@ -1,6 +1,6 @@
-package BO;
+package Services;
 
-import POM.GmailHomePage;
+import Pages.GmailHomePage;
 
 import io.qameta.allure.Step;
 import models.Letter;
@@ -10,17 +10,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SendMessageBO {
+public class MessageService {
 
     private GmailHomePage gmailHomePage;
 
-    private static Logger logger = LogManager.getLogger(SendMessageBO.class);
+    private static Logger logger = LogManager.getLogger(MessageService.class);
 
     private WebDriver driver;
     private WebDriverWait wait;
     private Letter letter;          //contains letter fields
 
-    public SendMessageBO (WebDriver driver, Letter letter){
+    public MessageService(WebDriver driver, Letter letter){
         gmailHomePage = new GmailHomePage(driver);
         this.driver = driver;
         this.letter = letter;

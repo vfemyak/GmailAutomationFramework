@@ -1,7 +1,7 @@
-package BO;
+package Services;
 
-import POM.GmailLoginPage;
-import POM.GmailPasswordPage;
+import Pages.GmailLoginPage;
+import Pages.GmailPasswordPage;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,17 +9,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AuthorisationBO {
+public class AuthorisationService {
 
     private GmailLoginPage loginPage;
     private GmailPasswordPage passwordPage;
 
-    private static Logger logger = LogManager.getLogger(AuthorisationBO.class);
+    private static Logger logger = LogManager.getLogger(AuthorisationService.class);
 
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public AuthorisationBO (WebDriver driver){
+    public AuthorisationService(WebDriver driver){
         loginPage = new GmailLoginPage(driver);
         passwordPage = new GmailPasswordPage(driver);
         this.driver = driver;
@@ -27,7 +27,7 @@ public class AuthorisationBO {
     }
 
     @Step("Successful authorization")
-    public void LogIn(String name, String password){
+    public void logIn(String name, String password){
         loginPage.typeLoginAndSubmit(driver, name);
         wait.until(ExpectedConditions.visibilityOf(passwordPage.getPasswordInput()));   //waiting for next page
 
