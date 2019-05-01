@@ -1,6 +1,8 @@
 import Services.AuthorisationService;
 import Services.MessageService;
 import models.Letter;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,6 +20,7 @@ public class SendDraftLetterTest_JUnit5 extends TestBase {
             "vfemyaktest, test1234test",
             "vfemyaktest1, test1234test1"
     })
+    @Execution(ExecutionMode.CONCURRENT)
     public void sendDraftLetter_Positive_TestCase(String login, String password) {
 
         driver.get("https://www.google.com/gmail/");

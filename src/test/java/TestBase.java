@@ -30,11 +30,7 @@ public class TestBase {
 //    }
 
     @AfterEach
-    public void close(){
-        driver.close();
-    }
-    @After
-    public void quit() {
+    public void close() {
         driver.quit();
     }
 }
