@@ -1,38 +1,24 @@
 import Services.AuthorisationService;
 import Services.MessageService;
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import data_readers.CsvDataReader;
-import data_readers.DataSourceReaderStrategy;
 import models.Letter;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import utils.Parallelized;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.Assert.assertTrue;
 
-@RunWith(Parallelized.class)
-//@Listeners({CustomListener.class})
-public class SendDraftLetterTest extends TestBase {
+public class SendDraftLetterTest_JUnit5 extends TestBase {
 
     Letter letter = new Letter("vfemyak@gmail.com", "tessst task3", "Testtting");
     private AuthorisationService authorisationService = new AuthorisationService(driver);
     private MessageService messageService = new MessageService(driver, letter);
 
-    private String login;
-    private String password;
-
-    public SendDraftLetterTest(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    @Test()
-    public void sendDraftLetter_Positive_TestCase() {
+    @ParameterizedTest
+    @CsvSource({
+            "vfemyaktest, test1234test",
+            "vfemyaktest1, test1234test1"
+    })
+    public void sendDraftLetter_Positive_TestCase(String login, String password) {
 
         driver.get("https://www.google.com/gmail/");
 
