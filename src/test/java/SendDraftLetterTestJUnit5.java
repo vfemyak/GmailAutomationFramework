@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.Assert.assertTrue;
 
-public class SendDraftLetterTest_JUnit5 extends TestBase {
+public class SendDraftLetterTestJUnit5 extends TestBase {
 
     Letter letter = new Letter("vfemyak@gmail.com", "tessst task3", "Testtting");
     private AuthorisationService authorisationService = new AuthorisationService(driver);
