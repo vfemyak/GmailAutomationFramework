@@ -4,7 +4,7 @@ import models.Letter;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.Assert.assertTrue;
 
@@ -15,10 +15,7 @@ public class SendDraftLetterTestJUnit5 extends TestBase {
     private MessageService messageService = new MessageService(driver, letter);
 
     @ParameterizedTest
-    @CsvSource({
-            "vfemyaktest, test1234test",
-            "vfemyaktest1, test1234test1"
-    })
+    @CsvFileSource(resources = "/test_data/users_data.csv")
     @Execution(ExecutionMode.CONCURRENT)
     public void sendDraftLetter_Positive_TestCase(String login, String password) {
 
