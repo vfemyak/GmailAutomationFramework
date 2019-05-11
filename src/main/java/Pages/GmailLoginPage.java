@@ -15,11 +15,11 @@ public class GmailLoginPage {
     @FindBy(xpath = "//div[@class=\'dG5hZc\']//span")
     private Button nextButton;
 
-    public GmailLoginPage(WebDriver driver){
-        PageFactory.initElements(new CustomFieldDecorator(driver),this);
+    public GmailLoginPage(WebDriver driver) {
+        PageFactory.initElements(new CustomFieldDecorator(driver), this);
     }
 
-    public void typeLoginAndSubmit (WebDriver driver, String login){
+    public void typeLoginAndSubmit(WebDriver driver, String login) {
         loginInput.sendKeys(login);
         nextButton.safeClick(driver);
     }

@@ -21,7 +21,7 @@ public class DriverManager {
         if (driverPool.get() == null) {
             logger.info("Driver initialize successful");
             driverPool.set(initWebDriver());
-        }else logger.error(" Driver doesn't initialized");
+        } else logger.error(" Driver doesn't initialized");
         return driverPool.get();
     }
 

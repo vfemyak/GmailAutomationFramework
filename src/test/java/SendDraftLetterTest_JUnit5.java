@@ -4,7 +4,6 @@ import models.Letter;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.Assert.assertTrue;
@@ -29,9 +28,9 @@ public class SendDraftLetterTest_JUnit5 extends TestBase {
 
         messageService.writeMessageAndClose();
         messageService.openDraftMessage();
-        assertTrue(messageService.isValidateFields(letter));  //validating fields
+        assertTrue(messageService.isMessageFieldsValid(letter));  //validating fields
         messageService.sendDraftLetter();
-        assertTrue(messageService.isSent());  //checking if the message was sent
+        assertTrue(messageService.isLetterSent());  //checking if the message was sent
     }
 
 }

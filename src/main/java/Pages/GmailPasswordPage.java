@@ -15,11 +15,11 @@ public class GmailPasswordPage {
     @FindBy(xpath = "//div[@class=\'dG5hZc\']//span")
     private Button nextButton;
 
-    public GmailPasswordPage(WebDriver driver){
-        PageFactory.initElements(new CustomFieldDecorator(driver),this);
+    public GmailPasswordPage(WebDriver driver) {
+        PageFactory.initElements(new CustomFieldDecorator(driver), this);
     }
 
-    public void typePasswordAndSubmit (String password){
+    public void typePasswordAndSubmit(String password) {
         passwordInput.sendKeys(password);
         nextButton.click();
     }

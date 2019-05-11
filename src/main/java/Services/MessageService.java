@@ -1,7 +1,6 @@
 package Services;
 
 import Pages.GmailHomePage;
-
 import io.qameta.allure.Step;
 import models.Letter;
 import org.apache.logging.log4j.LogManager;
@@ -20,15 +19,15 @@ public class MessageService {
     private WebDriverWait wait;
     private Letter letter;          //contains letter fields
 
-    public MessageService(WebDriver driver, Letter letter){
+    public MessageService(WebDriver driver, Letter letter) {
         gmailHomePage = new GmailHomePage(driver);
         this.driver = driver;
         this.letter = letter;
-        this.wait = new WebDriverWait(driver,10);
+        this.wait = new WebDriverWait(driver, 10);
     }
 
     @Step("Message has been closed")
-    public void writeMessageAndClose (){
+    public void writeMessageAndClose() {
         writeLetter(letter);
         gmailHomePage.saveMessage();
         wait.until(ExpectedConditions.invisibilityOf(gmailHomePage.getMessageTextarea()));  //waiting for closing letter form
@@ -36,7 +35,7 @@ public class MessageService {
     }
 
     @Step("Message has been written")
-    public void writeLetter (Letter letter){
+    public void writeLetter(Letter letter) {
         gmailHomePage.clickCompose();
         wait.until(ExpectedConditions.visibilityOf(gmailHomePage.getSaveAndCloseButton()));  //waiting for opening letter form
         gmailHomePage.writeLetter(letter);
@@ -44,29 +43,27 @@ public class MessageService {
     }
 
     @Step("Draft folder has been opened")
-    public void openDraftMessage(){
+    public void openDraftMessage() {
         gmailHomePage.openDraftFolder();
         logger.info("Draft folder has been opened");
         gmailHomePage.openDraftMessage();
         wait.until(ExpectedConditions.elementToBeClickable(gmailHomePage.getSendButton()));  //waiting for opening letter form
     }
 
-    public boolean isValidateFields(Letter letter){
-        if(gmailHomePage.getLetter().checkFields(letter)) {
+    public boolean isMessageFieldsValid(Letter letter) {
+        if (gmailHomePage.getLetter().checkMessageFields(letter)) {
             logger.info("All fields are valid");
             return true;
-        }
-        else{
+        } else {
             logger.error("Test failed");
             return false;
         }
     }
 
-    public boolean isSent(){
+    public boolean isLetterSent() {
         try {
             wait.until(ExpectedConditions.visibilityOf(gmailHomePage.getIsSentLabel()));
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             logger.error("Test failed");
             return false;
         }
@@ -74,7 +71,7 @@ public class MessageService {
     }
 
     @Step("Message has been sent")
-    public void sendDraftLetter(){
+    public void sendDraftLetter() {
         gmailHomePage.sendMessage();
         logger.info("Message has been sent");
     }

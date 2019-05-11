@@ -19,15 +19,15 @@ public class AuthorisationService {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public AuthorisationService(WebDriver driver){
+    public AuthorisationService(WebDriver driver) {
         loginPage = new GmailLoginPage(driver);
         passwordPage = new GmailPasswordPage(driver);
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,10);
+        this.wait = new WebDriverWait(driver, 10);
     }
 
     @Step("Successful authorization")
-    public void logIn(String name, String password){
+    public void logIn(String name, String password) {
         loginPage.typeLoginAndSubmit(driver, name);
         wait.until(ExpectedConditions.visibilityOf(passwordPage.getPasswordInput()));   //waiting for next page
 

@@ -51,30 +51,30 @@ public class GmailHomePage {
     @FindBy(css = "#aso_search_form_anchor > button.gb_Ef.gb_Qf > svg")
     private Button searchButton;
 
-    public GmailHomePage(WebDriver driver){
-        PageFactory.initElements(new CustomFieldDecorator(driver),this);
+    public GmailHomePage(WebDriver driver) {
+        PageFactory.initElements(new CustomFieldDecorator(driver), this);
         this.driver = driver;
     }
 
-    public void clickCompose(){
+    public void clickCompose() {
         composeButton.click();
     }
 
-    public void writeLetter(Letter letter){
+    public void writeLetter(Letter letter) {
         toTextarea.sendKeys(20, letter.getTo());
         subjectTextarea.sendKeys(letter.getSubject());
         messageTextarea.sendKeys(letter.getMessage());
     }
 
-    public void saveMessage(){
+    public void saveMessage() {
         saveAndCloseButton.click();
     }
 
-    public void openDraftFolder(){
+    public void openDraftFolder() {
         draftFolder.click();
     }
 
-    public void openDraftMessage(){
+    public void openDraftMessage() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -82,11 +82,12 @@ public class GmailHomePage {
         }
         lastDraftMessage.click();
     }
-    public void sendMessage(){
+
+    public void sendMessage() {
         sendButton.click();
     }
 
-    public Letter getLetter(){
+    public Letter getLetter() {
         letter.setTo(toTextareaCompare.getEmail());
         letter.setSubject(subjectTextarea.getValue());
         letter.setMessage(messageTextarea.getText());
@@ -94,7 +95,7 @@ public class GmailHomePage {
         return letter;
     }
 
-    public WebElement getIsSentLabel(){
+    public WebElement getIsSentLabel() {
         return isSentLabel;
     }
 
