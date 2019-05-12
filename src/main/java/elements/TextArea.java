@@ -1,6 +1,6 @@
 package elements;
 
-import Services.AuthorisationService;
+import Actions.AuthorisationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;

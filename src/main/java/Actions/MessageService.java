@@ -1,4 +1,4 @@
-package Services;
+package Actions;
 
 import Pages.GmailHomePage;
 import io.qameta.allure.Step;
@@ -48,26 +48,6 @@ public class MessageService {
         logger.info("Draft folder has been opened");
         gmailHomePage.openDraftMessage();
         wait.until(ExpectedConditions.elementToBeClickable(gmailHomePage.getSendButton()));  //waiting for opening letter form
-    }
-
-    public boolean isMessageFieldsValid(Letter letter) {
-        if (gmailHomePage.getLetter().checkMessageFields(letter)) {
-            logger.info("All fields are valid");
-            return true;
-        } else {
-            logger.error("Test failed");
-            return false;
-        }
-    }
-
-    public boolean isLetterSent() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(gmailHomePage.getIsSentLabel()));
-        } catch (Exception ex) {
-            logger.error("Test failed");
-            return false;
-        }
-        return true;
     }
 
     @Step("Message has been sent")

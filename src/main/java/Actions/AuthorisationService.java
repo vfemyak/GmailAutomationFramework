@@ -1,4 +1,4 @@
-package Services;
+package Actions;
 
 import Pages.GmailLoginPage;
 import Pages.GmailPasswordPage;

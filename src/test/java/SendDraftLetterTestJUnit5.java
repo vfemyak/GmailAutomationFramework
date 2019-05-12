@@ -1,18 +1,18 @@
-import Services.AuthorisationService;
-import Services.MessageService;
+import Actions.AuthorisationService;
+import Actions.MessageService;
+import Asserts.MessageAsserter;
 import models.Letter;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import static org.junit.Assert.assertTrue;
-
 public class SendDraftLetterTestJUnit5 extends TestBase {
 
     Letter letter = new Letter("vfemyak@gmail.com", "tessst task3", "Testtting");
     private AuthorisationService authorisationService = new AuthorisationService(driver);
     private MessageService messageService = new MessageService(driver, letter);
+    private MessageAsserter messageAsserter = new MessageAsserter();
 
     @ParameterizedTest
     @CsvFileSource(resources = "/test_data/users_data.csv")
@@ -25,9 +25,10 @@ public class SendDraftLetterTestJUnit5 extends TestBase {
 
         messageService.writeMessageAndClose();
         messageService.openDraftMessage();
-        assertTrue(messageService.isMessageFieldsValid(letter));  //validating fields
+        messageAsserter.assertMessageFieldsValid(letter);  //validating fields
+
         messageService.sendDraftLetter();
-        assertTrue(messageService.isLetterSent());  //checking if the message was sent
+        messageAsserter.assertLetterSent();  //checking if the message was sent
     }
 
 }

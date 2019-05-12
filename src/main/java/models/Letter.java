@@ -39,11 +39,9 @@ public class Letter {
     }
 
     public boolean checkMessageFields(Letter letter) {
-        if (this.to.equals(letter.getTo())
+        return this.to.equals(letter.getTo())
                 && this.subject.equals(letter.getSubject())
-                && this.message.equals(letter.getMessage()))
-            return true;
-        else return false;
+                && this.message.equals(letter.getMessage());
     }
 
 }
