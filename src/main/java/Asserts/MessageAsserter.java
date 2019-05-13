@@ -9,14 +9,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverManager;
+import utils.DriverType;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static utils.DriverType.CHROME;
 
 public class MessageAsserter {
 
     private static Logger logger = LogManager.getLogger(MessageAsserter.class);
-    private WebDriver driver = DriverManager.getDriver();
+    private WebDriver driver = DriverManager.getDriver(CHROME);
     private WebDriverWait wait = new WebDriverWait(driver, 10);
     private GmailHomePage gmailHomePage = new GmailHomePage(driver);
 

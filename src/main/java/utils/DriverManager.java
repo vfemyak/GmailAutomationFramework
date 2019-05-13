@@ -17,10 +17,10 @@ public class DriverManager {
 
     private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<WebDriver>();
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver(DriverType type) {
         if (driverPool.get() == null) {
             logger.info("Driver initialize successful");
-            driverPool.set(initWebDriver());
+            driverPool.set(DriverFactory.getDriver(type));
         } else logger.error(" Driver doesn't initialized");
         return driverPool.get();
     }
@@ -30,8 +30,8 @@ public class DriverManager {
 
         WebDriver webDriver = new ChromeDriver();
 
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        webDriver.manage().window().maximize();
+//        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         return webDriver;
     }

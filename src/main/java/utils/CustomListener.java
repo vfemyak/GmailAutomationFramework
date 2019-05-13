@@ -10,6 +10,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import static utils.DriverType.CHROME;
+
 public class CustomListener implements ITestListener {
 
     private static Logger logger = LogManager.getLogger(CustomListener.class);
@@ -54,6 +56,6 @@ public class CustomListener implements ITestListener {
 
     @Attachment(value = "Page screenshot", type = "image/png")
     private byte[] makeScreenshot() {
-        return ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) DriverManager.getDriver(CHROME)).getScreenshotAs(OutputType.BYTES);
     }
 }
