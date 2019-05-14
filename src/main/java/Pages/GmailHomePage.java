@@ -15,7 +15,7 @@ public class GmailHomePage {
     private Letter letter = new Letter();
     private WebDriver driver;
 
-    @FindBy(xpath = "//div[@class=\'z0\']/descendant::div[@role=\'button\']")
+    @FindBy(xpath = "//div[@class='z0']/descendant::div[@role='button']")
     private Button composeButton;
 
     @FindBy(css = "div.wO textarea.vO")
@@ -24,28 +24,28 @@ public class GmailHomePage {
     @FindBy(xpath = "//div[@class='oL aDm az9']/span[@email]")
     private TextArea toTextareaCompare;
 
-    @FindBy(xpath = "//input[@name=\'subjectbox\']")
+    @FindBy(xpath = "//input[@name='subjectbox']")
     private TextArea subjectTextarea;
 
-    @FindBy(xpath = "//table[@class=\'iN\']/descendant::*[@role=\'textbox\']")
+    @FindBy(xpath = "//table[@class='iN']/descendant::*[@role='textbox']")
     private TextArea messageTextarea;
 
-    @FindBy(xpath = "//td[@class=\'Hm\']/img[@class=\'Ha\']")
+    @FindBy(xpath = "//td[@class='Hm']/img[@class='Ha']")
     private Button saveAndCloseButton;
 
-    @FindBy(css = "a[href=\'https://mail.google.com/mail/u/0/#drafts\']")
+    @FindBy(css = "a[href='https://mail.google.com/mail/u/0/#drafts']")
     private Button draftFolder;
 
-    @FindBy(xpath = "//div[@gh=\'tl\']//tr[1]")     //select first draft
+    @FindBy(xpath = "//div[@gh='tl']//tr[1]")     //select first draft
     private Button lastDraftMessage;
 
-    @FindBy(xpath = "//table[@class=\'IZ\']/descendant::*[@role=\'button\']")
+    @FindBy(xpath = "//table[@class='IZ']/descendant::*[@role='button']")
     private Button sendButton;
 
-    @FindBy(xpath = "//*[@id=\'link_vsm\']")
+    @FindBy(xpath = "//*[@id='link_vsm']")
     private WebElement isSentLabel;
 
-    @FindBy(xpath = "//*[@id=\"aso_search_form_anchor\"]/div/input")
+    @FindBy(xpath = "//*[@id='aso_search_form_anchor']/div/input")
     private TextInput searchInput;
 
     @FindBy(css = "#aso_search_form_anchor > button.gb_Ef.gb_Qf > svg")

@@ -13,7 +13,7 @@ import utils.DriverType;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static utils.DriverType.CHROME;
+import static utils.DriverType.*;
 
 public class MessageAsserter {
 

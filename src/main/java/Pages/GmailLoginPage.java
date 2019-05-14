@@ -9,10 +9,10 @@ import wrappers.CustomFieldDecorator;
 
 public class GmailLoginPage {
 
-    @FindBy(css = "input[type=\'email\']")
+    @FindBy(css = "input[type='email']")
     private TextInput loginInput;
 
-    @FindBy(xpath = "//div[@class=\'dG5hZc\']//span")
+    @FindBy(xpath = "//div[@class='dG5hZc']//span")
     private Button nextButton;
 
     public GmailLoginPage(WebDriver driver) {

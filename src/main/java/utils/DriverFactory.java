@@ -25,7 +25,7 @@ public class DriverFactory {
     };
 
     private static final Supplier<WebDriver> firefoxDriverSupplier = () -> {
-        System.setProperty("", "");
+        System.setProperty("webdriver.firefox.marionette", "src\\main\\resources\\geckodriver.exe");
         return new FirefoxDriver();
     };
 
@@ -42,6 +42,7 @@ public class DriverFactory {
     static {
         driverMap.put(DriverType.CHROME, chromeDriverSupplier);
         driverMap.put(DriverType.IE, ieDriverSupplier);
+        driverMap.put(DriverType.FIREFOX, firefoxDriverSupplier);
     }
 
     public static WebDriver getDriver(DriverType type) {

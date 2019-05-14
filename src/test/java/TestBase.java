@@ -5,7 +5,7 @@ import utils.DriverManager;
 
 import java.util.concurrent.TimeUnit;
 
-import static utils.DriverType.CHROME;
+import static utils.DriverType.*;
 
 public class TestBase {
 
@@ -22,11 +22,6 @@ public class TestBase {
 //
 //        return arrayList.toArray(new Object[0][]);
 //    }
-
-    @BeforeEach
-    public void setUp() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
 
     @AfterEach
     public void close() {
