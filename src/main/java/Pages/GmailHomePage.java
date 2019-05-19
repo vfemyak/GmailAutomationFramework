@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import wrappers.CustomFieldDecorator;
 
+import java.util.List;
+
 public class GmailHomePage {
 
     private Letter letter = new Letter();
@@ -48,8 +50,20 @@ public class GmailHomePage {
     @FindBy(xpath = "//*[@id='aso_search_form_anchor']/div/input")
     private TextInput searchInput;
 
-    @FindBy(css = "#aso_search_form_anchor > button.gb_Ef.gb_Qf > svg")
+    @FindBy(css = "button.gb_Pe.gb_Qe")
     private Button searchButton;
+
+    @FindBy(xpath = "//*[@class='T-I J-J5-Ji T-Pm T-I-ax7 L3 J-JN-M-I']/div[1]/span")
+    private List<Button> chooseButtons;
+
+    @FindBy(xpath = "//*[@class='asl T-I-J3 J-J5-Ji']/parent::*")
+    private List<Button> spamButtons;
+
+    @FindBy(xpath = "//div[@class = 'ae4 UI Zs']//tr[@class = 'zA zE']")
+    private List<WebElement> messageCollection;
+
+    @FindBy(css = ".ae4.UI")
+    private WebElement messageContainer;
 
     public GmailHomePage(WebDriver driver) {
         PageFactory.initElements(new CustomFieldDecorator(driver), this);
@@ -61,7 +75,7 @@ public class GmailHomePage {
     }
 
     public void writeLetter(Letter letter) {
-        toTextarea.sendKeys(20, letter.getTo());
+        toTextarea.sendKeys(30, letter.getTo());
         subjectTextarea.sendKeys(letter.getSubject());
         messageTextarea.sendKeys(letter.getMessage());
     }
@@ -111,5 +125,27 @@ public class GmailHomePage {
         return sendButton;
     }
 
+    public TextInput getSearchInput() {
+        return searchInput;
+    }
 
+    public Button getSearchButton() {
+        return searchButton;
+    }
+
+    public List<Button> getChooseButtons() {
+        return chooseButtons;
+    }
+
+    public List<Button> getSpamButtons() {
+        return spamButtons;
+    }
+
+    public List<WebElement> getMessageCollection() {
+        return messageCollection;
+    }
+
+    public WebElement getMessageContainer() {
+        return messageContainer;
+    }
 }

@@ -32,4 +32,7 @@ public class MessageAsserter {
         assertTrue(gmailHomePage.getLetter().checkMessageFields(letter), "Not all fields are valid");
     }
 
+    public void assertLetterMovedToSpam() {
+        assertTrue(gmailHomePage.getMessageCollection().isEmpty());
+    }
 }

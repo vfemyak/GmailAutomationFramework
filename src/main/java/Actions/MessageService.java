@@ -55,4 +55,17 @@ public class MessageService {
         gmailHomePage.sendMessage();
         logger.info("Message has been sent");
     }
+
+    public void checkAllLetterFromUser(String user) {
+        gmailHomePage.getSearchInput().sendKeys(String.format("from:%s", user));
+        gmailHomePage.getSearchButton().click();
+
+        wait.until(ExpectedConditions.visibilityOf(gmailHomePage.getMessageContainer()));
+
+        gmailHomePage.getChooseButtons().get(1).click();
+    }
+
+    public void moveLetterToSpam() {
+        gmailHomePage.getSpamButtons().get(1).click();
+    }
 }
