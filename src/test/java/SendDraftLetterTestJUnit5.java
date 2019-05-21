@@ -8,6 +8,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+@Execution(ExecutionMode.CONCURRENT)
 public class SendDraftLetterTestJUnit5 extends TestBase {
 
     Letter letter = new Letter("vfemyaktest2@gmail.com", "tessst task3", "Testtting");
@@ -17,7 +18,6 @@ public class SendDraftLetterTestJUnit5 extends TestBase {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/test_data/users_data.csv")
-    @Execution(ExecutionMode.CONCURRENT)
     public void sendDraftLetter_Positive_TestCase(String login, String password) {
 
         driver.get("https://www.google.com/gmail/");
@@ -35,7 +35,6 @@ public class SendDraftLetterTestJUnit5 extends TestBase {
     //
 //    @ParameterizedTest
 //    @CsvFileSource(resources = "/test_data/users_data.csv")
-    @Execution(ExecutionMode.CONCURRENT)
     @Test
     public void moveLetterToSpam_Positive_TestCase() {
 
