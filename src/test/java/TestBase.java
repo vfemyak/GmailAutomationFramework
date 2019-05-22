@@ -9,7 +9,7 @@ import static utils.DriverType.*;
 
 public class TestBase {
 
-    protected WebDriver driver = DriverManager.getDriver(CHROME);
+    protected WebDriver driver = DriverManager.getDriver(FIREFOX);
 
 //    @Parameterized.Parameters
 //    public static Object[][] credentials() throws IOException, InvalidFormatException {

@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -25,7 +26,7 @@ public class DriverFactory {
     };
 
     private static final Supplier<WebDriver> firefoxDriverSupplier = () -> {
-        System.setProperty("webdriver.firefox.marionette", "src\\main\\resources\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver.exe");
         return new FirefoxDriver();
     };
 
