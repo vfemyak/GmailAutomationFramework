@@ -18,7 +18,7 @@ import static utils.DriverType.*;
 public class MessageAsserter {
 
     private static Logger logger = LogManager.getLogger(MessageAsserter.class);
-    private WebDriver driver = DriverManager.getDriver(FIREFOX);
+    private WebDriver driver = DriverManager.getDriver(CHROME);
     private WebDriverWait wait = new WebDriverWait(driver, 10);
     private GmailHomePage gmailHomePage = new GmailHomePage(driver);
 

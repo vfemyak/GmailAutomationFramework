@@ -22,6 +22,12 @@ public class DriverManager {
         return driverPool.get();
     }
 
+//    public static WebDriver getAvailableDriver(){
+//        //todo тут має юзатися синхронайз метод, який буде брати по черзі браузери і локати
+//        // їх(ставити наприклад true), а по закінченню тесту, дописати метод який буде розлокувати
+//        // (ставити в false)
+//    }
+
     static WebDriver initWebDriver(DriverType type) {
         WebDriver webDriver = DriverFactory.getDriver(type);
 
