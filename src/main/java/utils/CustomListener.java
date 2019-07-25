@@ -10,9 +10,6 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import static utils.DriverType.CHROME;
-import static utils.DriverType.FIREFOX;
-
 public class CustomListener implements ITestListener {
 
     private static Logger logger = LogManager.getLogger(CustomListener.class);
@@ -57,6 +54,6 @@ public class CustomListener implements ITestListener {
 
     @Attachment(value = "Page screenshot", type = "image/png")
     private byte[] makeScreenshot() {
-        return ((TakesScreenshot) DriverManager.getDriver(FIREFOX)).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }

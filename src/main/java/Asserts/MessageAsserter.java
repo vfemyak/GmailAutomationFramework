@@ -1,6 +1,5 @@
 package Asserts;
 
-import Actions.MessageService;
 import Pages.GmailHomePage;
 import models.Letter;
 import org.apache.logging.log4j.LogManager;
@@ -9,16 +8,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverManager;
-import utils.DriverType;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static utils.DriverType.*;
+import static utils.Browser.*;
 
 public class MessageAsserter {
 
     private static Logger logger = LogManager.getLogger(MessageAsserter.class);
-    private WebDriver driver = DriverManager.getDriver(CHROME);
+    private WebDriver driver = DriverManager.getDriver();
     private WebDriverWait wait = new WebDriverWait(driver, 10);
     private GmailHomePage gmailHomePage = new GmailHomePage(driver);
 

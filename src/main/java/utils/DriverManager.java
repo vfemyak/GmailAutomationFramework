@@ -14,22 +14,16 @@ public class DriverManager {
 
     private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<WebDriver>();
 
-    public static WebDriver getDriver(DriverType type) {
+    public static WebDriver getDriver() {
         if (driverPool.get() == null) {
             logger.info("Driver initialize successful");
-            driverPool.set(initWebDriver(type));
+            driverPool.set(initWebDriver());
         } else logger.error(" Driver doesn't initialized");
         return driverPool.get();
     }
 
-//    public static WebDriver getAvailableDriver(){
-//        //todo тут має юзатися синхронайз метод, який буде брати по черзі браузери і локати
-//        // їх(ставити наприклад true), а по закінченню тесту, дописати метод який буде розлокувати
-//        // (ставити в false)
-//    }
-
-    static WebDriver initWebDriver(DriverType type) {
-        WebDriver webDriver = DriverFactory.getDriver(type);
+    static WebDriver initWebDriver() {
+        WebDriver webDriver = DriverFactory.getDriver();
 
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
