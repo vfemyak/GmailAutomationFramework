@@ -14,16 +14,16 @@ public class DriverManager {
 
     private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<WebDriver>();
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver(Browser browser) {
         if (driverPool.get() == null) {
             logger.info("Driver initialize successful");
-            driverPool.set(initWebDriver());
+            driverPool.set(initWebDriver(browser));
         } else logger.error(" Driver doesn't initialized");
         return driverPool.get();
     }
 
-    static WebDriver initWebDriver() {
-        WebDriver webDriver = DriverFactory.getDriver();
+    static WebDriver initWebDriver(Browser browser) {
+        WebDriver webDriver = DriverFactory.getDriver(browser);
 
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);

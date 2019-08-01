@@ -49,8 +49,4 @@ public class DriverFactory {
     public static WebDriver getDriver(Browser type) {
         return driverMap.get(type).get();
     }
-
-    public static WebDriver getDriver() {
-        return driverMap.get(Browser.getAvailable()).get();
-    }
 }

@@ -1,17 +1,17 @@
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import utils.Browser;
 import utils.DriverManager;
 
-import static utils.Browser.*;
-
 public class TestBase {
 
-    protected WebDriver driver = DriverManager.getDriver();
+    protected Browser browser = Browser.getAvailable();
+    protected WebDriver driver = DriverManager.getDriver(browser);
 
     @AfterEach
     public void close() {
-        Browser.releaseBrowsers();
+        Browser.releaseBrowser(browser);
         driver.quit();
     }
 }

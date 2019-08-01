@@ -54,6 +54,6 @@ public class CustomListener implements ITestListener {
 
     @Attachment(value = "Page screenshot", type = "image/png")
     private byte[] makeScreenshot() {
-        return ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) DriverManager.getDriver(Browser.CHROME)).getScreenshotAs(OutputType.BYTES);
     }
 }
