@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 @Execution(ExecutionMode.CONCURRENT)
-public class SendDraftLetterTestJUnit5 extends TestBase {
+public class SendDraftLetterTest extends TestBase {
 
     Letter letter = new Letter("vfemyaktest2@gmail.com", "tessst task3", "Testtting");
     private AuthorisationService authorisationService = new AuthorisationService(driver);
