@@ -11,8 +11,8 @@
 **/*screenshots
 **/screenshots
 
-**/debug/
-**/allure-results/
+**/*debug
+**/allure-results
 
 ################################### For MAC
 # General
