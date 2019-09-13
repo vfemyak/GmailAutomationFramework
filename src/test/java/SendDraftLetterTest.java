@@ -34,9 +34,6 @@ public class SendDraftLetterTest extends TestBase {
         messageAsserter.assertLetterSent();  //checking if the message was sent
     }
 
-    //
-//    @ParameterizedTest
-//    @CsvFileSource(resources = "/test_data/users_data.csv")
     @Test
     public void moveLetterToSpam_Positive_TestCase() {
 
