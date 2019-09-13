@@ -16,17 +16,38 @@ public class DriverFactory {
     private static final Map<Browser, Supplier<WebDriver>> driverMap = new HashMap<>();
 
     private static final Supplier<WebDriver> chromeDriverSupplier = () -> {
-        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\Drivers\\Windows\\chromedriver.exe");
+        } else if (os.contains("osx")) {
+            System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\Drivers\\MacOS\\chromedriver");
+        } else if (os.contains("nix") || os.contains("aix") || os.contains("nux")) {
+            //Operating system is based on Linux/Unix/*AIX
+        }
         return new ChromeDriver();
     };
 
     private static final Supplier<WebDriver> ieDriverSupplier = () -> {
-        System.setProperty("webdriver.ie.driver", "src\\main\\resources\\IEDriverServer.exe");
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            System.setProperty("webdriver.ie.driver", "src\\main\\resources\\Drivers\\Windows\\IEDriverServer.exe");
+        } else if (os.contains("osx")) {
+            //Operating system is Apple OSX based
+        } else if (os.contains("nix") || os.contains("aix") || os.contains("nux")) {
+            //Operating system is based on Linux/Unix/*AIX
+        }
         return new InternetExplorerDriver();
     };
 
     private static final Supplier<WebDriver> firefoxDriverSupplier = () -> {
-        System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver.exe");
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\Drivers\\Windows\\geckodriver.exe");
+        } else if (os.contains("osx")) {
+            System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\Drivers\\MacOS\\geckodriver");
+        } else if (os.contains("nix") || os.contains("aix") || os.contains("nux")) {
+            //Operating system is based on Linux/Unix/*AIX
+        }
         return new FirefoxDriver();
     };
 
