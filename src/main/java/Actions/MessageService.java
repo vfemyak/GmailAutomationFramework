@@ -66,6 +66,10 @@ public class MessageService {
     }
 
     public void moveLetterToSpam() {
-        gmailHomePage.getSpamButtons().get(1).click();
+        if (!gmailHomePage.getMessageCollection().isEmpty()) {
+            gmailHomePage.getSpamButtons().get(1).click();
+            logger.info("Messages added to spam");
+        }
+        else logger.info("There are no letters from this user");
     }
 }

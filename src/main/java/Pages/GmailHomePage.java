@@ -47,10 +47,10 @@ public class GmailHomePage {
     @FindBy(xpath = "//*[@id='link_vsm']")
     private WebElement isSentLabel;
 
-    @FindBy(xpath = "//*[@id='aso_search_form_anchor']/div/input")
+    @FindBy(xpath = "//*[@id='aso_search_form_anchor']//div//input")
     private TextInput searchInput;
 
-    @FindBy(css = "button.gb_Pe.gb_Qe")
+    @FindBy(css = "button.gb_pf")
     private Button searchButton;
 
     @FindBy(xpath = "//*[@class='T-I J-J5-Ji T-Pm T-I-ax7 L3 J-JN-M-I']/div[1]/span")
@@ -59,7 +59,7 @@ public class GmailHomePage {
     @FindBy(xpath = "//*[@class='asl T-I-J3 J-J5-Ji']/parent::*")
     private List<Button> spamButtons;
 
-    @FindBy(xpath = "//div[@class = 'ae4 UI Zs']//tr[@class = 'zA zE']")
+    @FindBy(xpath = "//div[@class = 'ae4 UI']//tr[contains(@class, 'zA')]")
     private List<WebElement> messageCollection;
 
     @FindBy(css = ".ae4.UI")

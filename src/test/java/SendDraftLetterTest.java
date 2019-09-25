@@ -41,7 +41,7 @@ public class SendDraftLetterTest extends TestBase {
 
         authorisationService.logIn("vfemyaktest2", "test1234test2");
 
-        messageService.checkAllLetterFromUser("vfemyaktest1");
+        messageService.checkAllLetterFromUser("funny.customer10");
         messageService.moveLetterToSpam();
 
         messageAsserter.assertLetterMovedToSpam();

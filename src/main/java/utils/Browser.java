@@ -4,9 +4,9 @@ public enum Browser {
 
     FIREFOX(false),
     CHROME(false),
-//    SAFARI(false),
-//    OPERA(false),
-    IE(false);
+    SAFARI(true),
+    OPERA(true),
+    IE(true);
 
     private boolean isLocked;
 
